@@ -4,10 +4,48 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <link rel="stylesheet" href="/build.css">
+    <title>Password Generator</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
+    <div id="app">
+      <h1 class="text-center text-orange text-xl my-8 font-semibold">Password Generator</h1>
+
+      <div class="container-pass overflow-scroll">
+        <h2 class="text-lg color-dark py-4 pl-2.5 max-w-[80%]" id="password">Selecione as opções</h2>
+        <button onclick="copyPassword()" class="mr-2.5"><img src="./assets/document-copy.svg" alt="copiar"></button>
+      </div>
+      <form class="w-full mx-8">
+        <div>
+          <label for="characters">Quantidade de caracteres</label>
+          <input type="number" value="10" name="characters" class="pl-1" id="characters">
+        </div>
+        <div>
+          <label for="chk-numbers">Conter números</label>
+          <input type="checkbox" name="chk-numbers" id="chk-numbers">
+        </div>
+        <div>
+          <label for="chk-upper">Letras maiúsculas</label>
+          <input type="checkbox" name="chk-upper" id="chk-upper">
+        </div>
+        <div>
+          <label for="chk-lower">Letras minúsculas</label>
+          <input type="checkbox" name="chk-lower" id="chk-lower">
+        </div>
+        <div>
+          <label for="chk-symbols">Símbolos</label>
+          <input type="checkbox" name="chk-symbols" id="chk-symbols">
+        </div>
+        <button class="btn-generate">Gerar senha</button>
+      </form>
+    </div>
+    <script type="module" src="./main.js"></script>
+    <script>
+      async function copyPassword() {
+        const password = document.querySelector('#password');
+        const code = password.textContent;
+        await navigator.clipboard.writeText(code);
+      }
+    </script>
   </body>
 </html>
